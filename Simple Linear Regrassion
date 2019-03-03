@@ -1,0 +1,119 @@
+# Import what we'll use
+from pandas import DataFrame 
+from numpy import arange, random
+
+# This values may be altered
+x = arange(0, 16)
+
+# Create random values for axis Y
+y = list()
+for num_y in range(0, 16):  # this range() may be altered
+    y.append(random.randint(1, 50))
+
+# This help us see our data in one matrix
+parameters_of_lm = DataFrame()
+parameters_of_lm['X'] = x
+parameters_of_lm['Y'] = sorted(y)
+
+# Sum of terms of X
+sum_of_X = 0
+for n_x in x:
+    sum_of_X += n_x
+
+
+# Elevate to square (Sum of terms of X)
+elevate_to_2_sum_of_X = sum_of_X ** 2
+
+
+# Sum of terms of Y
+sum_of_Y = 0
+for n_y in y:
+    sum_of_Y += n_y
+
+
+# Multiplication of X.Y
+mult_XY = sorted(y) * x
+
+
+# Sum of (Multiplication of X.Y)
+sum_mult_XY = 0
+for number in mult_XY:
+    sum_mult_XY += number
+
+
+# Elevate to square each X
+square_2_X = x ** 2
+
+
+# Sum of (Elevate to square each X)
+sum_of_square_2_X = 0
+for number in square_2_X:
+    sum_of_square_2_X += number
+    
+
+# Lenght of (i) of Matrixs
+count_x_and_y = 0
+for number in x:
+    count_x_and_y += 1
+
+# Y-Intercept is B0
+B0 = ((sum_of_Y * sum_of_square_2_X) - (sum_of_X * sum_mult_XY)) / ((count_x_and_y * sum_of_square_2_X) - elevate_to_2_sum_of_X)
+
+# Slope is B1
+B1 = ((count_x_and_y * sum_mult_XY) - (sum_of_X * sum_of_Y)) / ((count_x_and_y * sum_of_square_2_X) - elevate_to_2_sum_of_X)
+
+# Parameters to Fit a Linear Model
+mean_of_X = sum_of_X / count_x_and_y
+mean_of_Y = sum_of_Y / count_x_and_y
+
+# Creat DataFrame
+index = ['Sum of terms of X',
+         'Elevate to square (Sum of terms of X)',
+         'Sum of terms of Y',
+         'Sum of (Multiplication of X.Y)',
+         'Sum of (Elevate to square each X)',
+         'Lenght of (i) of Matrixs',
+         'Y-Intercept B0',
+         'Slope B1',
+         'Mean_of_X',
+         'Mean_of_Y']
+data = [sum_of_X,
+        elevate_to_2_sum_of_X,
+        sum_of_Y,
+        sum_mult_XY,
+        sum_of_square_2_X,
+        count_x_and_y,
+        B0,
+        B1,
+        mean_of_X,
+        mean_of_Y]
+
+
+
+# Operations realised on our data
+result = DataFrame(data=data, index=index, columns=['Coefficients'])
+result.columns.names = ['Operations']
+result
+
+
+
+# Our data (X and Y)
+parameters_of_lm
+
+
+
+# Take out real proof
+from seaborn import lmplot, set_style
+
+# set a background
+set_style('darkgrid')
+
+# set a Linear Model
+lmplot(x='X', y='Y', data=parameters_of_lm, height=8)
+
+
+
+# Predict the best value in Y (Dependent Variable)
+# In this case, X represent any value  (Independent Variable)
+Y = (B0 + (B1 * X))
+print(f'Best prediction of Y {Y}')
