@@ -1,2 +1,3 @@
 # Python
-Good Morning
+You like Code and Math?
+I too!
