@@ -1,0 +1,65 @@
+# import
+from numpy import random, std
+from pandas import DataFrame
+
+# our data
+collect_data = []
+for i in range(0, 20):
+    collect_data.append(random.randint(0, 10))
+# if yuo want to see the data >> take out the # below
+# DataFrame(data=collect_data, columns=['Data']).head()
+
+# mean
+sum_x = 0
+for number in collect_data:
+    sum_x += number
+
+lenght = 0
+for number in collect_data:
+    lenght += 1
+    
+mean = round(number=sum_x / lenght, ndigits=2)
+
+# mean minus each single data *01
+new_data = list()
+for number in collect_data:
+    new_data.append(round(number=number - mean, ndigits=2))
+    
+# square rise
+square_rise = list()
+for number in new_data:
+    square_rise.append(round(number=number ** 2, ndigits=2))
+
+# sum each value (square rise)
+sum_square_rise = 0
+for number in square_rise:
+    sum_square_rise = round(number=sum_square_rise + number, ndigits=2)
+    
+# sum each value (square rise) divided by lenght
+divided_sum_square = round(number=sum_square_rise / lenght, ndigits=2)
+
+# take the square root
+standard_deviation = divided_sum_square ** (1/2)
+
+# see our data
+data = [sum_x,
+       lenght,
+       mean,
+       sum_square_rise,
+       divided_sum_square,
+       standard_deviation]
+index = ['Sum of data',
+        'n terms',
+        'Mean',
+        'Sum of squared rise',
+        'Sum of squared divided',
+        'Standard deviation']
+columns = ['Coefficients']
+
+result = DataFrame(data=data, index=index, columns=columns)
+result.columns.names = ['Operations']
+result
+
+# take out the real proof
+# Standard deviation
+print(f'Standard deviation {std(collect_data)}')
