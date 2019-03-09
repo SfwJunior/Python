@@ -1,0 +1,73 @@
+# import
+import numpy as np
+import pandas as pd
+
+# data
+x = list()
+for number in range(0, 8):
+    x.append(np.random.randint(1, 10))
+    
+y = list()
+for number in range(0, 8):
+    y.append(np.random.randint(1, 10))
+    
+# MY REFERANCE IS X AVERAGE AND Y AVERAGE
+# BUT YOU MAY USE ANY NUMBER
+
+# x average
+sum_x = 0
+lenght_x = 0
+for number in x:
+    sum_x += number
+    lenght_x += 1
+x_average = round(number=sum_x / lenght_x, ndigits=2)
+
+# y average
+sum_y = 0
+lenght_y = 0
+for number in y:
+    sum_y += number
+    lenght_y += 1
+y_average = round(number=sum_y / lenght_y, ndigits=2)
+
+# x minus x average
+x_minus_x_average = list()
+for number in x:
+    x_minus_x_average.append(round(number=number - x_average, ndigits=2))
+    
+# y minus y average
+y_minus_y_average = list()
+for number in y:
+    y_minus_y_average.append(round(number=number - y_average, ndigits=2))
+    
+# square rise x minus x average
+square_rise_x_minus_x_average = list()
+for number in x_minus_x_average:
+    square_rise_x_minus_x_average.append(round(number=number ** 2, ndigits=2))
+    
+# square rise y minus y average
+square_rise_y_minus_y_average = list()
+for number in y_minus_y_average:
+    square_rise_y_minus_y_average.append(round(number=number ** 2, ndigits=2))
+    
+# sum of square rise x minus x average plus square rise x minus x average
+sum_of_square_rise_x_minus_x_average_plus_square_rise_y_minus_y_average = list()
+for i in range(len(square_rise_x_minus_x_average)):
+    sum_of_square_rise_x_minus_x_average_plus_square_rise_y_minus_y_average.append(round(number=square_rise_x_minus_x_average[i] + square_rise_y_minus_y_average[i], ndigits=2))
+    
+# square root of sum of square rise x minus x average plus square rise x minus x average
+square_root_of_sum_of_square_rise_x_minus_x_average_plus_square_rise_y_minus_y_average = list()
+for number in sum_of_square_rise_x_minus_x_average_plus_square_rise_y_minus_y_average:
+    square_root_of_sum_of_square_rise_x_minus_x_average_plus_square_rise_y_minus_y_average.append(round(number=number ** (1/2), ndigits=2))
+    
+print(f'Euclidean, distance between dots {square_root_of_sum_of_square_rise_x_minus_x_average_plus_square_rise_y_minus_y_average}')
+
+# see data
+see_data = pd.DataFrame()
+see_data['X'] = x
+see_data['Y'] = y
+see_data
+
+# real proof
+Euclidean = (((see_data['X'][0] - x_average) ** 2) + ((see_data['Y'][0] - y_average) ** 2)) ** (1/2)
+Euclidean
