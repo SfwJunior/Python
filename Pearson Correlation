@@ -1,0 +1,88 @@
+# import
+import numpy as np
+import pandas as pd
+
+# data
+x = list()
+for i in range(0, 10):
+    x.append(np.random.randint(1, 51))
+y = list()
+for i in range(0, 10):
+    y.append(np.random.randint(1, 51))
+    
+# CALCULATE PEARSON CORRELATION
+
+# X average
+x_sum = 0
+x_lenght = 0
+for number in x:
+    x_sum += number
+    x_lenght += 1
+x_average = x_sum / x_lenght
+
+# Y average
+y_sum = 0
+y_lenght = 0
+for number in y:
+    y_sum += number
+    y_lenght += 1
+y_average = y_sum / y_lenght
+
+# x index minus x average
+x_index_minus_x_average = list()
+for number in x:
+    x_index_minus_x_average.append(round(number=number - x_average, ndigits=2))
+    
+# y index minus y average
+y_index_minus_y_average = list()
+for number in y:
+    y_index_minus_y_average.append(round(number=number - y_average, ndigits=2))
+    
+# multiplicatio of x index minus x average by y index minus y average
+multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average = list()
+for i in range(len(x_index_minus_x_average)):
+    multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average.append(round(number=x_index_minus_x_average[i] * y_index_minus_y_average[i], ndigits=2))
+    
+# sum of multiplicatio of x index minus x average by y index minus y average
+sum_of_multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average = 0
+for number in multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average:
+    sum_of_multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average = round(number=sum_of_multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average + number, ndigits=2)
+    
+# square rise the x index minus x average
+square_rise_the_x_index_minus_x_average = list()
+for number in x_index_minus_x_average:
+    square_rise_the_x_index_minus_x_average.append(round(number=number ** 2, ndigits=2))
+    
+# square rise the y index minus y average
+square_rise_the_y_index_minus_y_average = list()
+for number in y_index_minus_y_average:
+    square_rise_the_y_index_minus_y_average.append(round(number=number ** 2, ndigits=2))
+    
+# sum square rise the x index minus x average
+sum_square_rise_the_x_index_minus_x_average = 0
+for number in square_rise_the_x_index_minus_x_average:
+    sum_square_rise_the_x_index_minus_x_average = round(number=sum_square_rise_the_x_index_minus_x_average + number, ndigits=2)
+    
+# sum square rise the y index minus y average
+sum_square_rise_the_y_index_minus_y_average = 0
+for number in square_rise_the_y_index_minus_y_average:
+    sum_square_rise_the_y_index_minus_y_average = round(number=sum_square_rise_the_y_index_minus_y_average + number, ndigits=2)
+    
+# square root of sum square rise the x index minus x average
+square_root_of_sum_square_rise_the_x_index_minus_x_average = round(number=sum_square_rise_the_x_index_minus_x_average ** (1/2), ndigits=2)
+
+# square root of sum square rise the y index minus y average
+square_root_of_sum_square_rise_the_y_index_minus_y_average = round(number=sum_square_rise_the_y_index_minus_y_average ** (1/2), ndigits=2)
+
+# formula
+Rxy = sum_of_multiplicatio_of_x_index_minus_x_average_by_y_index_minus_y_average / (square_root_of_sum_square_rise_the_x_index_minus_x_average * square_root_of_sum_square_rise_the_y_index_minus_y_average)
+print(f'Pearson Correlation {Rxy}')
+
+# take real proof
+np.corrcoef(x,y)
+
+# see data
+see_data = pd.DataFrame()
+see_data['X'] = x
+see_data['Y'] = y
+see_data
