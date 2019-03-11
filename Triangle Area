@@ -1,0 +1,15 @@
+# import
+from numpy import random
+
+# data
+hypotenuse = random.randint(1, 7)
+opposite_leg = random.randint(1, 7)
+adjacent_leg = random.randint(1, 7)
+
+# find square area, after divided by 2
+Triangle_Area = round(number=(opposite_leg * adjacent_leg) / 2, ndigits=2)
+print(f'Hypotenuse: {hypotenuse}')
+print(f'Opposite Leg: {opposite_leg}')
+print(f'Adjacent Leg: {adjacent_leg}')
+print('\n')
+print(f'Triangle Area: {Triangle_Area}')
