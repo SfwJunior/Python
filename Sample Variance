@@ -1,0 +1,46 @@
+# import
+from numpy import random
+from pandas import DataFrame
+
+# x data
+x = list()
+for index in range(0, 10):
+    x.append(random.randint(10, 100))
+    
+# lenght
+n_elements = 0
+for index in x:
+    n_elements += 1
+    
+# x sum
+x_sum = 0
+for number in x:
+    x_sum += number
+    
+x_average = round(number=x_sum / n_elements, ndigits=2)
+
+# x minus average
+x_minus_average = list()
+for number in x:
+    x_minus_average.append(round(number=number - x_average, ndigits=2))
+    
+# rise square (x minus average)
+rise_square_x_minus_average = list()
+for number in x_minus_average:
+    rise_square_x_minus_average.append(round(number=number ** 2, ndigits=2))
+    
+# sum (rise square (x minus average))
+sum_rise_square_x_minus_average = 0
+for number in rise_square_x_minus_average:
+    sum_rise_square_x_minus_average = round(number=sum_rise_square_x_minus_average + number, ndigits=2)
+    
+# sum (rise square (x minus average divided by (n elements minus 1)))
+sum_rise_square_x_minus_average_divided_by_n_elements_minus_1 = round(number=(sum_rise_square_x_minus_average / (n_elements - 1)), ndigits=2)
+
+# square root (sum (rise square (x minus average)))
+square_root_sum_rise_square_x_minus_average_divided_by_n_elements_minus_1 = round(number=sum_rise_square_x_minus_average_divided_by_n_elements_minus_1 ** (1/2), ndigits=2)
+print(f'Sample Variance {square_root_sum_rise_square_x_minus_average_divided_by_n_elements_minus_1}')
+
+see_data = DataFrame()
+see_data['X'] = x
+see_data
