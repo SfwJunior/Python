@@ -1,0 +1,16 @@
+# import
+from numpy import random
+
+# data
+hypotenuse = 0
+opposite_leg = random.randint(1, 7)
+adjacent_leg = random.randint(1, 7)
+
+# find hypotenuse
+hypotenuse = round(number=((opposite_leg ** 2) + (adjacent_leg ** 2)) ** (1/2), ndigits=2)
+print(f'Opposite Leg: {opposite_leg}')
+print(f'Adjacent Leg: {adjacent_leg}')
+print('\n')
+print(f'Hypotenuse: {hypotenuse}')
+
+# THE VALUES ABOVE MAY BE ALTERED
