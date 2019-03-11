@@ -1,0 +1,19 @@
+# In this case, 6 represent the numbers on each sides of one cube
+
+# UNIVERSE SET
+Universe_set = 6
+
+# 2 represent the Events: odd number or even number.
+# In one cube we have 2, 4 and 6, that are even number, and 1, 3 and 5 that are odd number.
+# Note: 2 represent the chance of fall one unique odd or even number, not combination between them.
+
+# EVENT
+Event = 2
+
+# Probability is, the EVENT divided by UNIVERSE SET
+
+#EVENT PROBABILITY
+Probability = round(number=Event / Universe_set, ndigits=2)
+Percentage = round(number=Probability * 100, ndigits=2)
+print(f'The Probability of this Event happen is {Probability}')
+print(f'The Percentage of this Event happen is {Percentage}%')
