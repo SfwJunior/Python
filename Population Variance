@@ -1,0 +1,49 @@
+# import
+from numpy import random, mean
+from pandas import DataFrame
+
+# data
+x = list()
+for number in range(1, 10):
+    x.append(random.randint(10, 50))
+    
+# x sum
+x_sum = 0
+for number in x:
+    x_sum += number
+
+# x lenght
+x_lenght = 0
+for lenght in x:
+    x_lenght += 1
+    
+# x average    
+x_average = round(number=x_sum / x_lenght, ndigits=2)
+
+# x minus x average
+x_minus_x_average = list()
+for number in x:
+    x_minus_x_average.append(round(number=number - x_average, ndigits=2))
+    
+# rise square x minus x average
+rise_square_x_minus_x_average = list()
+for number in x_minus_x_average:
+    rise_square_x_minus_x_average.append(round(number=number ** 2, ndigits=2))
+    
+# sum of rise squared of x minus x average
+sum_of_rise_square_x_minus_x_average = 0
+for number in rise_square_x_minus_x_average:
+    sum_of_rise_square_x_minus_x_average = round(number=sum_of_rise_square_x_minus_x_average + number, ndigits=2)
+    
+# sum of rise squared of x minus x average divided by n elements
+sum_of_rise_squared_of_x_minus_x_average_divided_by_n_elements = round(number=sum_of_rise_square_x_minus_x_average / x_lenght, ndigits=2)
+
+# Population Variance
+population_variance = round(number=sum_of_rise_squared_of_x_minus_x_average_divided_by_n_elements ** (1/2), ndigits=2)
+# result
+print(f'Population Variance {population_variance}')
+
+# see data
+see_data = DataFrame()
+see_data['X'] = x
+see_data
